@@ -13,8 +13,6 @@
 
 <?php
 
-var_dump($_POST);
-
     require_once("components/colors.php");
     require_once("components/palettes.php");
 
@@ -32,8 +30,9 @@ var_dump($_POST);
             deleteColor($safeColorId);
             break;
         case "addcolor":
-            $safeColorId = htmlentities($_POST["colorid"]);
-            addcolor($safeColorId)
+            $safeColorName = htmlentities($_POST["colorname"]);
+            $safeColorHex = htmlentities($_POST["colorhex"]);
+            addColor($safeColorName, $safeColorHex);
             break;
     }
 
@@ -57,8 +56,20 @@ var_dump($_POST);
 
         <div class="col col-12 col-md-6">
             <h3 class="text-center">Colors</h3>
-            <div>
 
+            <form class="form-inline mt-4 mb-4" method="post" action="">
+                <input class="form-control mr-2" name="colorname" value="" placeholder="Color name...">
+                <div class="col input-group mr-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">#</div>
+                    </div>
+                    <input type="text" class="form-control" name="colorhex" placeholder="Hex value...">
+                </div>
+                <button type="submit" class="btn btn-success">Add</button>
+                <input type="hidden" name="action" value="addcolor">
+            </form>
+
+            <div>
 <?php
     foreach ($colorList as $color) {
 ?>
