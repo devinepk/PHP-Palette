@@ -1,23 +1,49 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="dist/css/output.css" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <title>PHP Palette Maker</title>
   </head>
   <body class="container mt-4">
 
-<?php
-    include("components/utility.php");
-    $colorList = getColorList();
-?>
+      <h1 class="text-center">PHP Palette Maker</h1>
 
-    <h1 class="text-center">PHP Palette Maker</h1>
+<?php
+
+var_dump($_POST);
+
+    require_once("components/colors.php");
+    require_once("components/palettes.php");
+
+    $action = '';
+    if (isset($_POST["action"])) { $action = $_POST["action"]; }
+
+    $GLOBALS["statusMessage"] = '';
+    $GLOBALS["statusMessageClass"] = 'alert-success';
+
+    // Switch statement goes here....
+    if ($action == "deletecolor") {
+        deleteColor($_POST["color_id"]);
+
+    }
+
+
+
+
+
+
+    if ($GLOBALS["statusMessage"] != '') {
+        echo '<div class="alert ' . $GLOBALS["statusMessageClass"] . '">' . $GLOBALS["statusMessage"] . "</div>\n";
+    }
+
+
+    $colorList = getColorList();
+
+
+?>
 
     <div class="row mt-4">
 
@@ -35,6 +61,13 @@
                 <div class="row mb-4">
                     <div class="colorSwatch" style="background-color: #<?=$color["hex"]?>"></div>
                     <div class="col my-auto"><?=$color["name"]?>, <code>#<?=$color["hex"]?></code></div>
+                    <div class="text-right my-auto">
+                        <form method="post" action="">
+                            <input type="hidden" name="color_id" value="<?=$color["id"]?>">
+                            <input type="hidden" name="action" value="deletecolor">
+                            <button class="btn" type="submit"><i class="text-danger far fa-trash-alt"></i></button>
+                        </form>
+                    </div>
                 </div>
 
 <?php
