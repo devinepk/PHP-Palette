@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow|Montserrat');
+
+// Your variable overrides
+$font-family-sans-serif: 'Archivo Narrow', sans-serif;
+$headings-font-family: 'Montserrat', sans-serif;
+$code-color: #999999;
+
+// Bootstrap and its default variables
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+.colorSwatch {
+    height: 50px;
+    width: 50px;
+}

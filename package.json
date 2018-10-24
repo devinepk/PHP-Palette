@@ -1,0 +1,24 @@
+{
+  "name": "php-palette-maker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "./node_modules/.bin/sass --watch src/scss/main.scss dist/css/output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bootcamp-f18/php-palette-maker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bootcamp-f18/php-palette-maker/issues"
+  },
+  "homepage": "https://github.com/bootcamp-f18/php-palette-maker#readme",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "sass": "^1.14.3"
+  }
+}
