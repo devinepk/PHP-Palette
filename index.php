@@ -32,14 +32,14 @@
 <?php
     foreach ($colorList as $color) {
 ?>
-    <div class="row mb-4">
-        <div class="colorSwatch" style="background-color: #<?=$color["hex"]?>"></div>
-        <div class="col my-auto"><?=$color["name"]?>, <code>#<?=$color["hex"]?></code></div>
-    </div>
+                <div class="row mb-4">
+                    <div class="colorSwatch" style="background-color: #<?=$color["hex"]?>"></div>
+                    <div class="col my-auto"><?=$color["name"]?>, <code>#<?=$color["hex"]?></code></div>
+                </div>
+
 <?php
     }
 ?>
-
             </div>
         </div>
     </div>
