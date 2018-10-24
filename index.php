@@ -24,24 +24,28 @@ var_dump($_POST);
     $GLOBALS["statusMessage"] = '';
     $GLOBALS["statusMessageClass"] = 'alert-success';
 
-    // Switch statement goes here....
-    if ($action == "deletecolor") {
-        deleteColor($_POST["color_id"]);
 
+    // Basic routing!
+    switch ($action) {
+        case "deletecolor":
+            $safeColorId = htmlentities($_POST["colorid"]);
+            deleteColor($safeColorId);
+            break;
+        case "addcolor":
+            $safeColorId = htmlentities($_POST["colorid"]);
+            addcolor($safeColorId)
+            break;
     }
 
 
-
-
-
-
+    // Do we need to alert the user of anything?
     if ($GLOBALS["statusMessage"] != '') {
         echo '<div class="alert ' . $GLOBALS["statusMessageClass"] . '">' . $GLOBALS["statusMessage"] . "</div>\n";
     }
 
-
+    // Load data
     $colorList = getColorList();
-
+    $paletteList = getPaletteList();
 
 ?>
 
@@ -63,7 +67,7 @@ var_dump($_POST);
                     <div class="col my-auto"><?=$color["name"]?>, <code>#<?=$color["hex"]?></code></div>
                     <div class="text-right my-auto">
                         <form method="post" action="">
-                            <input type="hidden" name="color_id" value="<?=$color["id"]?>">
+                            <input type="hidden" name="colorid" value="<?=$color["id"]?>">
                             <input type="hidden" name="action" value="deletecolor">
                             <button class="btn" type="submit"><i class="text-danger far fa-trash-alt"></i></button>
                         </form>
